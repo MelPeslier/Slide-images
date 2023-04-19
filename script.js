@@ -49,5 +49,13 @@ function seekMovement(){
 
     pourcentageActuel = calcPourcentage();
     console.log('pourcentage = ' + pourcentageActuel);
-    imagesTrack.style.transform = 'translate('+pourcentageActuel+'%, 0%)';
+    imagesTrack.animate(
+        [
+            {
+                transform:
+                'translate('+pourcentageActuel+'%, 0%)'
+            },
+        ],
+        600
+    );
 }
