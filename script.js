@@ -1,29 +1,53 @@
-let imagesTrack = document.getElementById('body');
+
+
+
+
+let body = document.getElementById('body');
+let imagesTrack = document.getElementById('images-track');
 
 let posX = 0;
 let toMe = 0;
-let isDown = false
+let isDown = false;
 
-imagesTrack.addEventListener('mousedown', (event) => {
+let minPourcentage = -100;
+let maxPourcentage = 0;
+let pourcentageActuel = 0;
+
+body.addEventListener('mousedown', (event) => {
     isDown = true;
     posX = event.clientX;
 });
 
-imagesTrack.addEventListener('mousemove', (event) => {
+body.addEventListener('mousemove', (event) => {
     toMe = event.clientX - posX;
     seekMovement();
 });
 
-imagesTrack.addEventListener('mouseup',(event) => {
+body.addEventListener('mouseup', () => {
     isDown = false;
 })
+
+function calcPourcentage(){
+    p = (1/500) * toMe;
+    let final = p + pourcentageActuel
+
+    if (final > maxPourcentage){
+        return maxPourcentage;
+    }
+
+    if (final < minPourcentage){
+        return minPourcentage;
+    }
+
+    return final;
+}
 
 function seekMovement(){
     if(!isDown){
         return
     }
-    console.log('x : ' + toMe);
-    return
-}
 
-// imagesTrack.addEventListener('mouseover')
+    pourcentageActuel = calcPourcentage();
+    console.log('pourcentage = ' + pourcentageActuel);
+    imagesTrack.style.transform = 'translate('+pourcentageActuel+'%, 0%)';
+}

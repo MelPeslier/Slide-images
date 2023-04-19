@@ -15,7 +15,7 @@ body{
     align-items: center;
 }
 
-.images-track{
+#images-track{
     display: flex;
     position: absolute;
     gap: 1.7rem;
