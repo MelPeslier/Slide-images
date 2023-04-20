@@ -27,8 +27,10 @@ body.addEventListener('mouseup', () => {
     isDown = false;
 })
 
+
+
 function calcPourcentage(){
-    p = (1/500) * toMe;
+    p = (1/100) * toMe;
     let final = p + pourcentageActuel
 
     if (final > maxPourcentage){
@@ -48,14 +50,16 @@ function seekMovement(){
     }
 
     pourcentageActuel = calcPourcentage();
-    console.log('pourcentage = ' + pourcentageActuel);
+    console.log('Actuel : ' + pourcentageActuel);
     imagesTrack.animate(
         [
             {
                 transform:
-                'translate('+pourcentageActuel+'%, 0%)'
+                'translate(' + pourcentageActuel + '%, 0%)'
             },
         ],
-        600
+        // fill : "forwards" 
+        // La nouvelle position sera retenue !
+        {duration : 1200, fill: "forwards"}
     );
 }
