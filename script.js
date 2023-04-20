@@ -1,10 +1,13 @@
 
 
-
-
+// Récupération des éléments de la page
 let body = document.getElementById('body');
 let imagesTrack = document.getElementById('images-track');
+let images = Array.from(document.getElementsByClassName('image'));
 
+
+
+// Variables
 let posX = 0;
 let toMe = 0;
 let isDown = false;
@@ -13,6 +16,9 @@ let minPourcentage = -100;
 let maxPourcentage = 0;
 let pourcentageActuel = 0;
 
+
+
+// Evvents Listenners !
 body.addEventListener('mousedown', (event) => {
     isDown = true;
     posX = event.clientX;
@@ -29,6 +35,7 @@ body.addEventListener('mouseup', () => {
 
 
 
+// fonctions
 function calcPourcentage(){
     p = (1/100) * toMe;
     let final = p + pourcentageActuel
@@ -50,7 +57,8 @@ function seekMovement(){
     }
 
     pourcentageActuel = calcPourcentage();
-    console.log('Actuel : ' + pourcentageActuel);
+    // console.log('Actuel : ' + pourcentageActuel);
+
     imagesTrack.animate(
         [
             {
@@ -58,8 +66,27 @@ function seekMovement(){
                 'translate(' + pourcentageActuel + '%, 0%)'
             },
         ],
-        // fill : "forwards" 
-        // La nouvelle position sera retenue !
-        {duration : 1200, fill: "forwards"}
+        {
+            duration : 1200,
+            // fill : "forwards" 
+            // La nouvelle position sera retenue !
+            fill: "forwards"
+        }
     );
+    
+    images.forEach((image , index) => {
+        console.log('img-' + index);
+        image.animate(
+            [
+                {
+                    objectPosition:
+                    'translate(' + -pourcentageActuel + '%, 50%)'
+                },
+            ],
+            {
+                duration : 1200,
+                fill: "forwards" 
+            }
+        );
+    });
 }
