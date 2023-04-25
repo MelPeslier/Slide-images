@@ -1,11 +1,9 @@
 
 
 // Récupération des éléments de la page
-let body = document.getElementById('body');
-let imagesTrack = document.getElementById('images-track');
-let images = Array.from(document.getElementsByClassName('image'));
-
-
+const body = document.getElementById('body');
+const imagesTrack = document.getElementById('images-track');
+const cadres = document.getElementsByClassName('cadre');
 
 // Variables
 let posX = 0;
@@ -37,7 +35,7 @@ body.addEventListener('mouseup', () => {
 
 // fonctions
 function calcPourcentage(){
-    p = (1/100) * toMe;
+    p = (1/250) * toMe;
     let final = p + pourcentageActuel
 
     if (final > maxPourcentage){
@@ -57,7 +55,7 @@ function seekMovement(){
     }
 
     pourcentageActuel = calcPourcentage();
-    // console.log('Actuel : ' + pourcentageActuel);
+    console.log('Actuel : ' + pourcentageActuel);
 
     imagesTrack.animate(
         [
@@ -73,20 +71,18 @@ function seekMovement(){
             fill: "forwards"
         }
     );
-    
-    images.forEach((image , index) => {
-        console.log('img-' + index);
-        image.animate(
+
+    for (let i = 0; i < cadres.length; i++) {
+        cadres[i].animate(
             [
                 {
-                    objectPosition:
-                    'translate(' + -pourcentageActuel + '%, 50%)'
+                    backgroundPosition: '' + -pourcentageActuel + '% 0%'
                 },
             ],
             {
                 duration : 1200,
-                fill: "forwards" 
+                fill : "forwards"
             }
         );
-    });
+    }
 }

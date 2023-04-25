@@ -24,11 +24,41 @@ body{
     /* transform: translate(0%, 0%); */
 }
 
+.image-1{
+    background-image: url('images/image-1.jpg');
+}
+.image-2{
+    background-image: url('images/image-2.jpg');
+}
+.image-3{
+    background-image: url('images/image-3.jpg');
+}
+.image-4{
+    background-image: url('images/image-4.jpg');
+}
+.image-5{
+    background-image: url('images/image-5.jpg');
+}
+.image-6{
+    background-image: url('images/image-6.jpg');
+}
+.image-7{
+    background-image: url('images/image-7.jpg');
+}
+
+
 .cadre{
-    width: 26vw;
+    /* Container */
+    height: 80vh;
     aspect-ratio: 9/14;
     overflow: hidden;
+
+    /* Background */
+    background-size: cover;
+    background-position: 0% 0%;
+    background-repeat: no-repeat;
 }
+
 
 #images-track > .cadre > .image{
     width: auto;
